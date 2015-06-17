@@ -2,6 +2,7 @@ package logic;
 
 import interfaces.*;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
@@ -10,11 +11,12 @@ import java.util.Set;
  * Created by Workstation on 16/06/2015.
  */
 public class ContactManagerImpl implements ContactManager {
-    private List<FutureMeeting> futureMeetings;
-    private List<PastMeeting> pastMeetings;
+    private List<FutureMeeting> futureMeetings = new ArrayList<FutureMeeting>();
+    private List<PastMeeting> pastMeetings = new ArrayList<PastMeeting>();
 
     @Override
     public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
+        FutureMeetingImpl fm = new FutureMeetingImpl(date, contacts);
         return 0;
     }
 

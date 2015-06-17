@@ -10,14 +10,16 @@ import java.util.Set;
  * Created by V Ivanovs on 16/06/2015.
  */
 public class MeetingImpl implements Meeting {
+    private static int count = 0;
     private int id;
     private Calendar date;
     private Set<Contact> contacts;
 
-    public MeetingImpl(int id, Calendar date, Set<Contact> contacts){
-        this.id = id;
+    public MeetingImpl(Calendar date, Set<Contact> contacts){
         this.date = date;
         this.contacts = contacts;
+        id = count;
+        count++;
     }
     /**
      * Returns the id of the meeting.
