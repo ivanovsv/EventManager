@@ -16,8 +16,9 @@ public class ContactManagerImpl implements ContactManager {
 
     @Override
     public int addFutureMeeting(Set<Contact> contacts, Calendar date) {
-        FutureMeetingImpl fm = new FutureMeetingImpl(date, contacts);
-        return 0;
+        FutureMeeting fm = new FutureMeetingImpl(date, contacts);
+        futureMeetings.add(fm);
+        return fm.getId();
     }
 
     @Override
