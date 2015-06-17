@@ -53,7 +53,7 @@ public class ContactManagerImpl implements ContactManager {
 
     @Override
     public void addNewPastMeeting(Set<Contact> contacts, Calendar date, String text) {
-
+        pastMeetings.add(new PastMeetingImpl(contacts, date, text));
     }
 
     @Override
@@ -79,5 +79,15 @@ public class ContactManagerImpl implements ContactManager {
     @Override
     public void flush() {
 
+    }
+    /*
+    Additional helper methods
+     */
+    public List<PastMeeting> getPastMeetingList(){
+        return pastMeetings;
+    }
+
+    public List<FutureMeeting> getFutureMeetings() {
+        return futureMeetings;
     }
 }

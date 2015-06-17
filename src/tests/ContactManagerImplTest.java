@@ -3,12 +3,15 @@ package tests;
 import interfaces.Contact;
 import interfaces.FutureMeeting;
 import interfaces.ContactManager;
+import interfaces.PastMeeting;
+import logic.PastMeetingImpl;
 import logic.ContactManagerImpl;
 import logic.ContactImpl;
 import logic.FutureMeetingImpl;
 
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,8 +21,9 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class ContactManagerImplTest {
-    ContactManager manager = new ContactManagerImpl();
+    ContactManagerImpl manager = new ContactManagerImpl();
     Set<Contact> contacts;
+    String contactNameTest;
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -72,7 +76,16 @@ public class ContactManagerImplTest {
 
     @Test
     public void testAddNewPastMeeting() throws Exception {
-
+        manager.addNewPastMeeting(contacts, Calendar.getInstance(), "toCompare");
+        List<PastMeeting>  pml = manager.getPastMeetingList();
+        int size = pml.size();
+        PastMeeting pm = pml.get(0);
+        String notes = pm.getNotes();
+        Object[] arr = pm.getContacts().toArray();
+        Contact c = (Contact)arr[0];
+        assertEquals(size, 1); //tests that meeting was added
+        assertEquals(notes, "toCompare"); // tests that you can get notes
+        assertEquals(c.getName(), "Bob");
     }
 
     @Test
